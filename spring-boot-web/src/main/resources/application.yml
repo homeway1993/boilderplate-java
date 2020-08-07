@@ -1,0 +1,5 @@
+server:
+  port: 7701
+
+logging.level:
+  org.springframework.web.servlet: DEBUG
