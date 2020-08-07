@@ -1,0 +1,19 @@
+proxy:
+  host: 192.168.201.201
+  port: 3128
+
+ec-pay:
+  base-url: https://payment-stage.ecpay.com.tw
+auth:
+  base-url: http://localhost:7701/auth
+
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: FULL
+        readTimeout: 60000
+        connectTimeout: 60000
+
+logging.level:
+  boilerplate.spring.feignclient.client: DEBUG
