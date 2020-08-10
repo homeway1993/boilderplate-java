@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: url
+    username: username
+    password: password
+    driver-class-name: oracle.jdbc.OracleDriver
+  jpa:
+    hibernate.ddl-auto: none
+    open-in-view: false
+
+logging.level:
+  org.hibernate.SQL: DEBUG
+  org.hibernate.type.descriptor.sql.BasicBinder: TRACE
