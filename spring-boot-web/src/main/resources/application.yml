@@ -3,3 +3,4 @@ server:
 
 logging.level:
   org.springframework.web.servlet: DEBUG
+  boilerplate.springboot.web.aspect: DEBUG
