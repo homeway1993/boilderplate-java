@@ -106,8 +106,6 @@ public class MultipleMongodbConfig {
         try {
             mappingConverter.setCustomConversions(beanFactory.getBean(CustomConversions.class));
         } catch (NoSuchBeanDefinitionException ignore) {
-            mappingConverter.setTypeMapper(new DefaultMongoTypeMapper(null));
-            return mappingConverter;
         }
 
         // Don't save field "_class" to mongodb
