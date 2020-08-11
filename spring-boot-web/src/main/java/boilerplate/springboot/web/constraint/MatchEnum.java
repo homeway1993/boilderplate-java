@@ -17,7 +17,7 @@ public @interface MatchEnum {
     /**
      * @return the Enums to match.
      */
-    Class<? extends Enum>[] enums();
+    Class<? extends Enum<?>>[] enums();
 
     String message() default "The format should match {enums}.";
 

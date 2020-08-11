@@ -11,7 +11,7 @@ import java.util.stream.Stream;
  */
 public class MatchEnumValidator implements ConstraintValidator<MatchEnum, CharSequence> {
 
-    private Class<? extends Enum>[] enums;
+    private Class<? extends Enum<?>>[] enums;
 
     @Override
     public void initialize(MatchEnum constraintAnnotation) {
