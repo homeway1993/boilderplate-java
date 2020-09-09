@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-@Table(name = "IV_INVNT")
+@Table(name = "IV_INVNT", schema = "SYS_POSS")
 public class IvInvnt {
 
     @Id
