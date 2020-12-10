@@ -1,0 +1,14 @@
+server:
+  port: 7701
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 689067405677-t1ts9if2k0u76mjo6paupvjabqtd0s03.apps.googleusercontent.com
+            client-secret: 6VfG1KzleJB0ubRQ2HJvZcMX
+
+logging.level:
+  org.springframework.web.servlet: DEBUG
