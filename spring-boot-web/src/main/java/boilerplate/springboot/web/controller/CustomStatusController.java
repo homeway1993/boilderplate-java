@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class CustomStatusController {
 
     @GetMapping("/{statusCode}")
-    ResponseEntity<Void> getStatusCode(@PathVariable Integer statusCode){
+    ResponseEntity<String> getStatusCode(@PathVariable Integer statusCode){
         return ResponseEntity.status(statusCode)
-                .build();
+                .body(statusCode.toString());
     }
 }
