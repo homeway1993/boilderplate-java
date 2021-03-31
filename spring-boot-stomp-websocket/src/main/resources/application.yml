@@ -1,0 +1,10 @@
+server:
+  port: 8080
+
+stomp:
+  enable: false
+  relayHost: localhost
+  relayPort: 61613
+  username: guest
+  passcode: guest
+  virtualHost: /
