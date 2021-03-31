@@ -15,7 +15,7 @@ function setConnected(connected) {
 function connect() {
     var socket = new WebSocket('ws://localhost:15674/ws');
     stompClient = Stomp.over(socket);
-    stompClient.connect({}, function (frame) {
+    stompClient.connect({ login: 'guest', passcode: 'guest' }, function (frame) {
         setConnected(true);
         console.log('Connected: ' + frame);
         stompClient.subscribe('/topic/greetings', function (greeting) {
