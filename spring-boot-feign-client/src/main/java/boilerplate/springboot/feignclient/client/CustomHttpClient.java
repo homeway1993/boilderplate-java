@@ -4,12 +4,18 @@ import feign.Client;
 import feign.httpclient.ApacheHttpClient;
 import org.apache.http.HttpHost;
 import org.apache.http.client.config.RequestConfig;
+import org.apache.http.conn.ssl.NoopHostnameVerifier;
+import org.apache.http.conn.ssl.TrustAllStrategy;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.ssl.SSLContextBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.openfeign.FeignClientProperties;
 import org.springframework.context.annotation.Configuration;
+
+import javax.net.ssl.SSLContext;
 
 @Configuration
 class CustomHttpClient {
@@ -19,6 +25,9 @@ class CustomHttpClient {
 
     @Value("${proxy.port:}")
     private Integer proxyPort;
+
+    @Value("${feign.httpclient.disableSslValidation:false}")
+    private boolean disableSslValidation;
 
     @Autowired
     private FeignClientProperties feignClientProperties;
@@ -39,10 +48,19 @@ class CustomHttpClient {
         }
 
         // create HTTP client
-        CloseableHttpClient httpClient = HttpClients.custom()
-                .setDefaultRequestConfig(configBuilder.build())
-                .build();
+        HttpClientBuilder httpClientBuilder = HttpClients.custom()
+                .setDefaultRequestConfig(configBuilder.build());
 
-        return new ApacheHttpClient(httpClient);
+        if (disableSslValidation) {
+            try {
+                SSLContext sslContext = new SSLContextBuilder().loadTrustMaterial(TrustAllStrategy.INSTANCE).build();
+                httpClientBuilder.setSSLContext(sslContext)
+                        .setSSLHostnameVerifier(NoopHostnameVerifier.INSTANCE);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return new ApacheHttpClient(httpClientBuilder.build());
     }
 }
